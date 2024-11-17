@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: yellow;
+            animation: flash 1s infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .game-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #fff;
+            overflow: hidden;
+            background-image: url('snake-overlay.png'); /* Add your snake overlay image */
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        canvas {
+            background-color: transparent;
+            display: block;
+        }
+
+        .score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+        }
+
+        .leaderboard {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .leaderboard h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .leaderboard ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .leaderboard li {
+            font-size: 18px;
+        }
+
+        .main-header nav ul li {
+        display: inline;
+        margin: 0 15px;
+        }
+
+    
+        
+    </style>
+</head>
+<body>
+    <header class="main-header">    
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="scratch.html">Scratch Page</a></li>
+                <li><a href="#">Web App</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Snake</h1>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div class="score">Score: 0</div>
+        <div class="leaderboard">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboard">
+                <li>1. 0</li>
+                <li>2. 0</li>
+                <li>3. 0</li>
+                <li>4. 0</li>
+                <li>5. 0</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const gridSize = 20;
+        const tileCount = 20;
+        canvas.width = canvas.height = gridSize * tileCount;
+
+        let snake = [{ x: 10, y: 10 }];
+        let direction = { x: 0, y: 0 };
+        let food = { x: 15, y: 15 };
+        let score = 0;
+        let leaderboard = [0, 0, 0, 0, 0];
+        let specialFood = null;
+        let specialFoodTimeout;
+
+        function gameLoop() {
+            update();
+            draw();
+            setTimeout(gameLoop, 100);
+        }
+
+        function update() {
+            const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
+                if (score % 5 === 0) {
+                    spawnSpecialFood();
+                }
+            } else {
+                snake.pop();
+            }
+
+            if (specialFood && head.x === specialFood.x && head.y === specialFood.y) {
+                score += 5;
+                specialFood = null;
+                clearTimeout(specialFoodTimeout);
+            }
+
+            snake.unshift(head);
+
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
+                updateLeaderboard();
+                resetGame();
+            }
+
+            document.querySelector('.score').textContent = `Score: ${score}`;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+
+            if (specialFood) {
+                ctx.fillStyle = 'green';
+                ctx.fillRect(specialFood.x * gridSize, specialFood.y * gridSize, gridSize, gridSize);
+            }
+
+            ctx.fillStyle = 'yellow';
+            snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
+        }
+
+        function resetGame() {
+            snake = [{ x: 10, y: 10 }];
+            direction = { x: 0, y: 0 };
+            food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
+            score = 0;
+            specialFood = null;
+            clearTimeout(specialFoodTimeout);
+        }
+
+        function updateLeaderboard() {
+            leaderboard.push(score);
+            leaderboard.sort((a, b) => b - a);
+            leaderboard = leaderboard.slice(0, 5);
+            const leaderboardList = document.getElementById('leaderboard');
+            leaderboardList.innerHTML = leaderboard.map((score, index) => `<li>${index + 1}. ${score}</li>`).join('');
+        }
+
+        function spawnSpecialFood() {
+            specialFood = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
+            specialFoodTimeout = setTimeout(() => {
+                specialFood = null;
+            }, 3000);
+        }
+
+        document.addEventListener('keydown', event => {
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (direction.y === 0) direction = { x: 0, y: -1 };
+                    break;
+                case 'ArrowDown':
+                    if (direction.y === 0) direction = { x: 0, y: 1 };
+                    break;
+                case 'ArrowLeft':
+                    if (direction.x === 0) direction = { x: -1, y: 0 };
+                    break;
+                case 'ArrowRight':
+                    if (direction.x === 0) direction = { x: 1, y: 0 };
+                    break;
+            }
+        });
+
+        gameLoop();
+    </script>
+</body>
+</html>

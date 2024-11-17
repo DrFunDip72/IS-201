@@ -1,0 +1,110 @@
+
+/* This custom style sheet will include
+4 style definitions
+1 style that specifies font color
+1 style that specifies font family
+3 divs for positioning and styling blocks 
+of content in the scratch page */
+
+/*Defines body font family
+and changes background color*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*the header*/
+.main-header {
+    background-color: rgb(112, 152, 255);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.main-header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+.main-header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+.main-header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+.main-header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.sub-header {
+    color: rgb(156, 68, 68);
+    font-size: 15px;
+}
+
+/*Blue click me button*/
+.blue-button {
+    background-color: blue; /* Button background color */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding around the text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+}
+.blue-button:hover {
+    background-color: darkblue; /* Darker blue on hover */
+}
+
+/*adds padding between lines in my list*/
+li {
+    padding-bottom: 2.5px; 
+}
+ul {
+    padding-top: 2.5px;
+}
+
+/*font color I used for the bullet points in the ul*/
+.font-color {
+    color: #1f1f1f;
+}
+
+/*for the image*/
+.full-width-image {
+    width: 90%;
+}
+.box-image {
+    background-color: rgb(184, 204, 255); /*Light blue box background*/
+    padding-top: 1px; /*gives padding to the top and bottom*/
+    padding-bottom: 10px;
+    max-width: calc(100% - 30px); /*adjusts the width to the width of the page - 30px*/
+    margin: 0 auto; /*centers the box horizontally*/
+}
+
+ .centered-list {
+    list-style-position: inside; /* Moves bullet points and numbers inside the list item */
+    padding-left: 0; /* Removes default padding */
+    text-align: center; /* Aligns text to the left within the list item */
+    display: inline-block; /* Makes the list inline-block to center it */
+}
+
+.container {
+    text-align: center; /*center aligns the text*/
+}
+.box-button {
+    background-color: lightgray; /*Light grey box background*/
+    padding-top: 1px; /*gives padding to the top and bottom*/
+    padding-bottom: 10px;
+    max-width: calc(100% - 30px); /*adjusts the width to the width of the page - 30px*/
+    margin: 0 auto; /*centers the box horizontally*/
+}
+
+.center-align-text {
+    text-align: center;
+}
+
+/*Sets the back to the top link scroll smooth instead of a jump*/
+html {
+    scroll-behavior: smooth;
+}
+

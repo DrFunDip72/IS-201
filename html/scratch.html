@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch Page</title>
+    <link href="../css/scratchstyles.css" rel="stylesheet" /><!--Linked to my custom style sheet-->
+</head>
+<body>
+    <header class="main-header">
+        <h1 id="top">Scratch Page</h1>    
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="#">Scratch Page</a></li>
+                <li><a href="webapp.html">Web App</a></li>
+            </ul>
+    <hr class="my-4"/> <!--Divider-->
+            <ul>
+                <li><a href="#pho">Photo Contest</a></li>
+                <li><a href="#box">Best Photo</a></li>
+                <li><a href="#mus">Inspiring Music</a></li>
+                <li><a href="#tab">Tableau</a></li>
+                <li><a href="#web">Web App</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--ol + li + ul for the Dean of Students Photo Contest-->
+    <div class="container" id="pho">
+        <h2>2024 Dean of Students Photo Contest</h2>
+        <h3>Goal: Win 1 category - Honorable mention in another</h3>
+    </div>  
+
+    <div class="box-button">
+        <ol>
+            <li>Students Engaged in Inspired Learning
+                <ul class="font-color">
+                    <li>Jack in the race car: This one I took of my best friend when he came down to Provo to hike Mt. Timpanogas with me. We went to a car show beforehand and he got to sit inside of a race car.</li>
+                </ul>
+            </li>
+            <li>The World is our Campus: Belonging
+                <ul class="font-color">
+                    <li>Regi and Soren: My brother's mother in-law was in town for a few weeks helping with their newborn child. I captured this moment of serenity on the 4th of July. It's one of my favorite photos. </li>
+                </ul>
+            </li>
+            <li>Student Life Reframed: Viewed From Them
+                <ul class="font-color"><li>Colby with his skateboard: This guy was hilarious--we were taking some portraits of him for a work profile, when he requested I take some cool shots of him doing an ollie. It only took about 30 tries lol. </li></ul>
+            </li>
+            <li>Student Wellness: Overall Well-being
+                <ul class="font-color"><li>Brooklyne and Spencer: Ah these two love birds love their country swing dancing. Spencer was in town for the weekend so they wanted a photoshoot.</li></ul>
+            </li>
+            <li>Students in Nature and on Adventure
+                <ul class="font-color"><li>Spencer atop Box Elder Peak: This one was the best photo I have taken to date. It's the one you see below. About an 11 mile round trip hike, boy was it beautiful on top. </li></ul>
+            </li>
+        </ol>
+    </div><br>
+    <!--Divider-->
+    <hr class="my-4" id="box"/><br>
+    <!--box container that holds my image and centers the text-->
+    <div class="container">
+        <div class="box-image">
+            <h3>If I'm being honest, this is my favorite photo and I sure hope it wins.</h3>
+            <img src="../assets/img/boxelder-bg.jpg" alt="Spencer atop Box Elder Peak" class="full-width-image">
+        </div>
+    </div><br>
+
+    <!--Divider-->
+    <hr class="my-4" id="mus"/>
+    <div class="container">
+        <h3>The Music I Listened to While Doing This Assignment:</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ANkxRGvl1VY?si=nCbQzf6cB0zIb6jE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <br>
+   <!--Divider-->
+   <hr class="my-4" id="tab"/>
+   <br>
+   <div class='tableauPlaceholder' id='viz1731801878741' style='position: relative'>
+        <noscript>
+            <a href='#'><img alt='Population and Birth Rate (2012) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wo&#47;WorldIndicators_17318018047880&#47;Population&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+            <object class='tableauViz'  style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                <param name='embed_code_version' value='3' /> 
+                <param name='site_root' value='' />
+                <param name='name' value='WorldIndicators_17318018047880&#47;Population' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wo&#47;WorldIndicators_17318018047880&#47;Population&#47;1.png' /> 
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-US' />
+                <param name='filter' value='publish=yes' />
+            </object>
+        </div>                
+        
+        <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1731801878741');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+        </script><br>
+
+    <!--Divider-->
+    <hr class="my-4"  id="web"/><br>
+    <!--Click here to play the web app button-->
+    <div class="container">
+        <div class="box-button">
+            <p>If you want to play my web app...</p>
+            <a href="webapp.html" class="button-link">
+                <button class="blue-button">Click Here</button>
+            </a>
+        </div>
+    </div>
+    <br>
+    <!--Divider-->
+    <hr class="my-4" /><br>
+    <div class="container">
+        <p>I used Copilot to learn how to do a lot of things on this page such as the header, how to make a box around my image, how to make the blue button, and how to make the back to top button scroll nicely to the top. </p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <a href="#top">Back to the top</a>
+    </div><br>
+</body>
+</html>
